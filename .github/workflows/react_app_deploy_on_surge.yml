@@ -12,25 +12,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Deploying to surge
     steps:
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
         
-      - name: Install Node.js
-        uses: actions/setup-node@v2-beta
-        with:
-          node-version: 12
+    - name: Install Node.js
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: 12
 
-      - name: Install Yarn
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install # will run `yarn install` command
+    - uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: install # will run `yarn install` command
         
-      - name: Build React App
-        run: yarn build
+    - name: Build React App
+      run: yarn build
         
-      - name: Install Surge
-        run: npm install -g surge
+    - name: Install Surge
+      run: npm install -g surge
         
-      - name: Deloy on surge
-        run: surge ./build second_assignment.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+    - name: Deloy on surge
+      run: surge ./build second_assignment.surge.sh --token ${{ secrets.SURGE_TOKEN }}
